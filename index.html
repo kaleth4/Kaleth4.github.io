@@ -11,24 +11,183 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #333; }
-    .navbar { background-color: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    .navbar-brand { color: #007bff !important; font-weight: 700; }
-    .nav-link { color: #333 !important; }
-    .dropdown-menu { background-color: #f8f9fa; }
-    .hero { background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%); padding: 100px 0; text-align: center; }
-    .hero h1 { color: #007bff; font-weight: 700; }
-    .cards-container { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 50px; }
-    .card { background: #ffffff; border: 1px solid #e3f2fd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 250px; margin: 10px; transition: transform 0.3s; }
-    .card:hover { transform: translateY(-5px); }
-    .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px 10px 0 0; }
-    .services, .products, .about { padding: 60px 0; background-color: #f8f9fa; }
-    .services h2, .products h2, .about h2 { color: #007bff; text-align: center; font-weight: 700; }
-    .btn-primary { background-color: #007bff; border-color: #007bff; }
-    .btn-primary:hover { background-color: #0056b3; }
-    .footer { background-color: #333; color: white; padding: 20px 0; text-align: center; }
-    .map { height: 300px; width: 100%; border: none; }
-    @media (max-width: 768px) { .cards-container { flex-direction: column; align-items: center; } .card { width: 90%; } }
+ /* =====================
+   BASE
+===================== */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+  color: #333;
+}
+
+/* =====================
+   NAVBAR
+===================== */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.navbar-brand {
+  color: #007bff !important;
+  font-weight: 700;
+}
+
+.nav-link {
+  color: #333 !important;
+}
+
+/* =====================
+   HERO
+===================== */
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
+  padding: 100px 0;
+  text-align: center;
+}
+
+.hero h1 {
+  color: #007bff;
+  font-weight: 700;
+}
+
+/* =====================
+   CARDS
+===================== */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.card {
+  width: 260px;
+  border-radius: 12px;
+  border: 1px solid #e3f2fd;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.card img {
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+/* =====================
+   SECTIONS
+===================== */
+.services,
+.products,
+.about {
+  padding: 70px 0;
+  background-color: #f8f9fa;
+}
+
+.services h2,
+.products h2,
+.about h2 {
+  color: #007bff;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+/* Servicios centrados */
+.services .col-md-3 {
+  text-align: center;
+}
+
+
+/* =====================
+   LOGOS - SECCIÓN AISLADA
+===================== */
+/* Forzar que la sección completa use todo el ancho */
+.elementor-section[data-id="0a21d23"] {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.elementor-section[data-id="0a21d23"] .elementor-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: none !important; /* 👈 Elimina límite de ancho */
+  width: 100%;
+  padding: 40px 20px;
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+
+
+.elementor-section[data-id="0a21d23"] .elementor-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 1 200px; /* Permite que las columnas crezcan más */
+}
+
+.elementor-section[data-id="0a21d23"] img {
+  max-height: 60px; /* Aumentado de 40px a 60px */
+  width: auto;
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.elementor-section[data-id="0a21d23"] img:hover {
+  opacity: 1;
+  transform: scale(1.1); /* Aumentado de 1.05 a 1.1 */
+}
+/* =====================
+   BUTTONS
+===================== */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 25px 0;
+  text-align: center;
+}
+
+/* =====================
+   MAP
+===================== */
+.map {
+  height: 300px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -62,7 +221,7 @@
   <!-- Home con Cards -->
   <section id="home" class="hero">
     <div class="container">
-      <h1>Calidad y compromiso en cada servicio</h1>
+      <h1>Bienvenido a WOLVES TI</h1>
       <p>Reparación profesional de computadores y venta de productos tecnológicos.</p>
       <div class="cards-container">
         <div class="card">
@@ -111,6 +270,62 @@
     </div>
   </section>
 
+
+ <section class="elementor-section elementor-inner-section elementor-element elementor-element-0a21d23 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0a21d23" data-element_type="section">
+    <div class="elementor-container elementor-column-gap-default">
+        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-4339d28" data-id="4339d28" data-element_type="column">
+            <div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-element elementor-element-8f7a0f8 aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="8f7a0f8" data-element_type="widget" data-widget_type="image.default">
+                    <div class="elementor-widget-container">
+                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/amdryzen.png" class="attachment-large size-large wp-image-2643" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/amdryzen.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/amdryzen-16x4.png 16w" sizes="(max-width: 118px) 100vw, 118px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-08cb678" data-id="08cb678" data-element_type="column">
+            <div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-element elementor-element-6e8847d aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="6e8847d" data-element_type="widget" data-widget_type="image.default">
+                    <div class="elementor-widget-container">
+                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/asus.png" class="attachment-large size-large wp-image-2645" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/asus.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/asus-16x4.png 16w" sizes="(max-width: 118px) 100vw, 118px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-c783f34" data-id="c783f34" data-element_type="column">
+            <div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-element elementor-element-24585b1 aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="24585b1" data-element_type="widget" data-widget_type="image.default">
+                    <div class="elementor-widget-container">
+                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/msi.png" class="attachment-large size-large wp-image-2644" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/msi.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/msi-16x4.png 16w" sizes="(max-width: 118px) 100vw, 118px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-b9d6a6b" data-id="b9d6a6b" data-element_type="column">
+            <div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-element elementor-element-bc76b24 aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="bc76b24" data-element_type="widget" data-widget_type="image.default">
+                    <div class="elementor-widget-container">
+                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/thermaltake.png" class="attachment-large size-large wp-image-2646" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/thermaltake.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/thermaltake-16x4.png 16w" sizes="(max-width: 118px) 100vw, 118px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-3cb83c7" data-id="3cb83c7" data-element_type="column">
+            <div class="elementor-widget-wrap elementor-element-populated">
+                <div class="elementor-element elementor-element-e55134c aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="e55134c" data-element_type="widget" data-widget_type="image.default">
+                    <div class="elementor-widget-container">
+                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/nvidia.png" class="attachment-large size-large wp-image-2647" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/nvidia.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/nvidia-16x4.png 16w">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
   <!-- Venta de Productos -->
   <section id="products" class="products">
     <div class="container">
@@ -125,8 +340,8 @@
   <section id="about" class="about">
     <div class="container">
       <h2>About Us</h2>
-      <p>Somos expertos en reparación de computadores con años de experiencia.</p>
-      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741195509814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonas%2C%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1585711045095!5m2!1sen!2sid" allowfullscreen></iframe>
+    <center> <p>Somos expertos en reparación de computadores con años de experiencia.</p> </center>  
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4810.092170450665!2d-74.15556242424987!3d4.686164241781816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9cea2b7ee513%3A0x3c2d3000634fd8fc!2sCalle%2019%20A%20Bis%20%23116-31%2C%20Bogot%C3%A1%2C%20Colombia!5e1!3m2!1sen!2sid!4v1767567106995!5m2!1sen!2sid" allowfullscreen></iframe>
       <a href="https://wa.me/573505416339" class="btn btn-success btn-lg ms-2" target="_blank">WhatsApp</a>
     </div>
   </section>
@@ -155,7 +370,7 @@
       </div>
     </div>
   </div>
-
+ 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     // Simulación de búsqueda de productos (reemplaza con datos de Excel)
@@ -180,3 +395,9 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
