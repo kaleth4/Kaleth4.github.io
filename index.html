@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reparación profesional de computadores: servicios remotos, reparaciones, actualizaciones y recuperación de datos. Venta de productos tecnológicos.">
+  <meta name="keywords" content="reparación computadores, servicio remoto, venta productos tech, recuperación datos">
+  <meta name="author" content="Wolves TI">
+  <title>Reparación de Computadores - WOLVES TI</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Reemplaza con tu favicon -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #333; }
+    .navbar { background-color: #ffffff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .navbar-brand { color: #007bff !important; font-weight: 700; }
+    .nav-link { color: #333 !important; }
+    .dropdown-menu { background-color: #f8f9fa; }
+    .hero { background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%); padding: 100px 0; text-align: center; }
+    .hero h1 { color: #007bff; font-weight: 700; }
+    .cards-container { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 50px; }
+    .card { background: #ffffff; border: 1px solid #e3f2fd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 250px; margin: 10px; transition: transform 0.3s; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px 10px 0 0; }
+    .services, .products, .about { padding: 60px 0; background-color: #f8f9fa; }
+    .services h2, .products h2, .about h2 { color: #007bff; text-align: center; font-weight: 700; }
+    .btn-primary { background-color: #007bff; border-color: #007bff; }
+    .btn-primary:hover { background-color: #0056b3; }
+    .footer { background-color: #333; color: white; padding: 20px 0; text-align: center; }
+    .map { height: 300px; width: 100%; border: none; }
+    @media (max-width: 768px) { .cards-container { flex-direction: column; align-items: center; } .card { width: 90%; } }
+  </style>
+</head>
+<body>
+
+  <!-- Navegación -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">WOLVES TI</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">Servicios</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#services">Servicio Remoto</a></li>
+              <li><a class="dropdown-item" href="#services">Reparación de PCs</a></li>
+              <li><a class="dropdown-item" href="#services">Actualización de Software</a></li>
+              <li><a class="dropdown-item" href="#services">Recuperación de Datos Borrados</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#products">Venta de Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home con Cards -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Bienvenido a Tu Empresa</h1>
+      <p>Reparación profesional de computadores y venta de productos tecnológicos.</p>
+      <div class="cards-container">
+        <div class="card">
+          <img src="./2026.jpeg" alt="Reparación 1">
+          <div class="card-body">
+            <h5 class="card-title">Reparación Básica</h5>
+            <p class="card-text">Servicio rápido y confiable.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="./11.jpeg" alt="Reparación 2">
+          <div class="card-body">
+            <h5 class="card-title">Actualización Avanzada</h5>
+            <p class="card-text">Mejora tu equipo al máximo.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="./34.jpeg" alt="Producto 1">
+          <div class="card-body">
+            <h5 class="card-title">Producto Destacado</h5>
+            <p class="card-text">El mejor en el mercado.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="./67.jpeg" alt="Producto 2">
+          <div class="card-body">
+            <h5 class="card-title">Accesorio Nuevo</h5>
+            <p class="card-text">Ideal para tu setup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2>Servicios</h2>
+      <div class="row">
+        <div class="col-md-3"><h5>Servicio Remoto</h5><p>Asistencia virtual.</p></div>
+        <div class="col-md-3"><h5>Reparación de PCs</h5><p>Hardware y software.</p></div>
+        <div class="col-md-3"><h5>Actualización de Software</h5><p>Optimización completa.</p></div>
+        <div class="col-md-3"><h5>Recuperación de Datos</h5><p>Recupera lo perdido.</p></div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Venta de Productos -->
+  <section id="products" class="products">
+    <div class="container">
+      <h2>Venta de Productos</h2>
+      <input type="text" id="searchProduct" class="form-control mb-3" placeholder="Buscar producto...">
+      <div id="productResults"></div>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Comprar</button>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>Somos expertos en reparación de computadores con años de experiencia.</p>
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613507864!3d-6.194741195509814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonas%2C%20Jakarta%20Pusat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1585711045095!5m2!1sen!2sid" allowfullscreen></iframe>
+      <a href="https://wa.me/573505416339" class="btn btn-success btn-lg ms-2" target="_blank">WhatsApp</a>
+    </div>
+  </section>
+ 
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Kaleth corcho. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Modal de Registro -->
+  <div class="modal fade" id="registerModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registro para Compra</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="registerForm">
+            <input type="text" class="form-control mb-2" placeholder="Nombre" required>
+            <input type="email" class="form-control mb-2" placeholder="Email" required>
+            <button type="submit" class="btn btn-primary">Registrar y Pagar en Nequi</button>
+          </form>
+          <a href="https://transacciones.nequi.com/bdigital/login" class="btn btn-secondary mt-2" target="_blank">Ir a Nequi</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Simulación de búsqueda de productos (reemplaza con datos de Excel)
+    const products = [
+      { name: 'RAM 4GB SODIMM', price: '$50000', desc: 'En stock.' },
+      { name: 'Mouse Gamer', price: '$160000', desc: 'Por pedido.' }
+    ];
+    document.getElementById('searchProduct').addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      const results = products.filter(p => p.name.toLowerCase().includes(query));
+      document.getElementById('productResults').innerHTML = results.map(p => `<div class="card"><div class="card-body"><h5>${p.name}</h5><p>${p.desc}</p><p>${p.price}</p></div></div>`).join('');
+    });
+
+    // Registro simple con localStorage
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = this[0].value;
+      const email = this[1].value;
+      localStorage.setItem('user', JSON.stringify({ name, email }));
+      alert('Registrado exitosamente. Procede a pagar en Nequi.');
+    });
+  </script>
+</body>
+</html>
