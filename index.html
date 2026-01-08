@@ -1,403 +1,348 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Reparación profesional de computadores: servicios remotos, reparaciones, actualizaciones y recuperación de datos. Venta de productos tecnológicos.">
-  <meta name="keywords" content="reparación computadores, servicio remoto, venta productos tech, recuperación datos">
-  <meta name="author" content="Wolves TI">
-  <title>Reparación de Computadores - WOLVES TI</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- Reemplaza con tu favicon -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
- /* =====================
-   BASE
-===================== */
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #ffffff;
-  color: #333;
-}
+import React, { useState, useEffect } from 'react';
+import { 
+  Monitor, 
+  Settings, 
+  Database, 
+  Globe, 
+  ShoppingBag, 
+  MessageCircle, 
+  ShieldCheck, 
+  ArrowRight, 
+  Menu, 
+  X,
+  CreditCard,
+  CheckCircle2,
+  Clock
+} from 'lucide-react';
 
-/* =====================
-   NAVBAR
-===================== */
-.navbar {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-}
+const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-.navbar-brand {
-  color: #007bff !important;
-  font-weight: 700;
-}
+  // Efecto para cambiar el estilo del nav al hacer scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-.nav-link {
-  color: #333 !important;
-}
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
 
-/* =====================
-   HERO
-===================== */
-.hero {
-  background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 100%);
-  padding: 100px 0;
-  text-align: center;
-}
+  const services = [
+    {
+      title: "Servicio Remoto",
+      description: "Asistencia virtual inmediata para problemas de software y configuración sin moverte de casa.",
+      icon: <Globe className="w-8 h-8" />,
+    },
+    {
+      title: "Reparación de PCs",
+      description: "Diagnóstico detallado y reparación de hardware y software para laptops y equipos de escritorio.",
+      icon: <Monitor className="w-8 h-8" />,
+    },
+    {
+      title: "Actualización de Software",
+      description: "Optimización de sistema operativo, limpieza de virus y actualización de drivers críticos.",
+      icon: <Settings className="w-8 h-8" />,
+    },
+    {
+      title: "Recuperación de Datos",
+      description: "Servicios especializados para recuperar información de discos duros y memorias dañadas.",
+      icon: <Database className="w-8 h-8" />,
+    }
+  ];
 
-.hero h1 {
-  color: #007bff;
-  font-weight: 700;
-}
+  const products = [
+    {
+      name: "Producto Destacado",
+      price: "Consultar",
+      category: "Hardware",
+      desc: "Componentes de alto rendimiento para mejorar tu equipo."
+    },
+    {
+      name: "Accesorio Nuevo",
+      price: "Consultar",
+      category: "Accesorios",
+      desc: "Complementos ideales para optimizar tu setup diario."
+    }
+  ];
 
-/* =====================
-   CARDS
-===================== */
-.cards-container {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 25px;
-  flex-wrap: wrap;
-  margin-top: 50px;
-}
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
+      
+      {/* --- HEADER --- */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('home')}>
+            <div className="bg-indigo-700 p-2 rounded-lg text-white font-bold text-xl shadow-lg">W</div>
+            <span className={`font-black text-2xl tracking-tighter ${scrolled ? 'text-slate-900' : 'text-slate-900 md:text-white'}`}>
+              WOLVES TI
+            </span>
+          </div>
 
-.card {
-  width: 260px;
-  border-radius: 12px;
-  border: 1px solid #e3f2fd;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
-}
+          <div className="hidden md:flex items-center gap-8">
+            {['Inicio', 'Servicios', 'Productos', 'Nosotros'].map((item) => (
+              <button 
+                key={item} 
+                onClick={() => scrollToSection(item.toLowerCase())}
+                className={`font-semibold hover:text-indigo-600 transition-colors ${
+                  scrolled ? 'text-slate-600' : 'text-slate-700 md:text-slate-200'
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+            <a 
+              href="https://wa.me/573505416339" 
+              className="bg-indigo-600 text-white px-5 py-2.5 rounded-full font-bold hover:bg-indigo-700 transition-all shadow-md"
+            >
+              WhatsApp
+            </a>
+          </div>
 
-.card:hover {
-  transform: translateY(-6px);
-}
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
 
-.card img {
-  height: 160px;
-  object-fit: cover;
-  border-radius: 12px 12px 0 0;
-}
+        {/* Mobile Nav */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white absolute top-full left-0 w-full border-b shadow-xl py-6 flex flex-col items-center gap-4">
+            {['Inicio', 'Servicios', 'Productos', 'Nosotros'].map((item) => (
+              <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="font-bold text-lg">
+                {item}
+              </button>
+            ))}
+            <a href="https://wa.me/573505416339" className="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold">
+              Contacto Directo
+            </a>
+          </div>
+        )}
+      </nav>
 
-/* =====================
-   SECTIONS
-===================== */
-.services,
-.products,
-.about {
-  padding: 70px 0;
-  background-color: #f8f9fa;
-}
+      {/* --- HERO SECTION --- */}
+      <section id="inicio" className="relative h-screen min-h-[600px] flex items-center overflow-hidden bg-slate-900">
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/40 to-transparent z-10"></div>
+          {/* Reemplazo de imagen por placeholder estilizado */}
+          <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1597733336794-12d05021d510?q=80&w=1974&auto=format&fit=crop')] bg-cover bg-center"></div>
+        </div>
 
-.services h2,
-.products h2,
-.about h2 {
-  color: #007bff;
-  text-align: center;
-  font-weight: 700;
-  margin-bottom: 40px;
-}
-
-/* Servicios centrados */
-.services .col-md-3 {
-  text-align: center;
-}
-
-
-/* =====================
-   LOGOS - SECCIÓN AISLADA
-===================== */
-/* Forzar que la sección completa use todo el ancho */
-.elementor-section[data-id="0a21d23"] {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-.elementor-section[data-id="0a21d23"] .elementor-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  max-width: none !important; /* 👈 Elimina límite de ancho */
-  width: 100%;
-  padding: 40px 20px;
-  background: #f5f5f5;
-  border-radius: 12px;
-}
-
-
-.elementor-section[data-id="0a21d23"] .elementor-column {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 0 1 200px; /* Permite que las columnas crezcan más */
-}
-
-.elementor-section[data-id="0a21d23"] img {
-  max-height: 60px; /* Aumentado de 40px a 60px */
-  width: auto;
-  opacity: 0.85;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.elementor-section[data-id="0a21d23"] img:hover {
-  opacity: 1;
-  transform: scale(1.1); /* Aumentado de 1.05 a 1.1 */
-}
-/* =====================
-   BUTTONS
-===================== */
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-/* =====================
-   FOOTER
-===================== */
-.footer {
-  background-color: #333;
-  color: #fff;
-  padding: 25px 0;
-  text-align: center;
-}
-
-/* =====================
-   MAP
-===================== */
-.map {
-  height: 300px;
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-}
-
-/* =====================
-   RESPONSIVE
-===================== */
-@media (max-width: 768px) {
-  .card {
-    width: 90%;
-  }
-}
-
-  </style>
-</head>
-<body>
-
-  <!-- Navegación -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="#">WOLVES TI</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">Servicios</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#services">Servicio Remoto</a></li>
-              <li><a class="dropdown-item" href="#services">Reparación de PCs</a></li>
-              <li><a class="dropdown-item" href="#services">Actualización de Software</a></li>
-              <li><a class="dropdown-item" href="#services">Recuperación de Datos Borrados</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="#products">Venta de Productos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Home con Cards -->
-  <section id="home" class="hero">
-    <div class="container">
-      <h1>Bienvenido a WOLVES TI</h1>
-      <p>Reparación profesional de computadores y venta de productos tecnológicos.</p>
-      <div class="cards-container">
-        <div class="card">
-          <img src="./2026.jpeg" alt="Reparación 1">
-          <div class="card-body">
-            <h5 class="card-title">Reparación Básica</h5>
-            <p class="card-text">Servicio rápido y confiable.</p>
+        <div className="relative z-20 max-w-7xl mx-auto px-6 w-full">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 mb-6 backdrop-blur-sm">
+              <ShieldCheck className="w-4 h-4" />
+              <span className="text-sm font-bold uppercase tracking-wider">Expertos en Tecnología</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
+              Tu PC en manos de <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
+                Verdaderos Expertos
+              </span>
+            </h1>
+            <p className="text-xl text-slate-300 mb-10 leading-relaxed">
+              En WOLVES TI, no solo reparamos computadores; optimizamos tu rendimiento digital con servicios profesionales y productos de vanguardia.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button 
+                onClick={() => scrollToSection('servicios')}
+                className="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-indigo-700 transition-all flex items-center justify-center gap-2 shadow-xl shadow-indigo-900/20"
+              >
+                Nuestros Servicios <ArrowRight className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={() => scrollToSection('productos')}
+                className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all"
+              >
+                Ver Catálogo
+              </button>
+            </div>
           </div>
         </div>
-        <div class="card">
-          <img src="./11.jpeg" alt="Reparación 2">
-          <div class="card-body">
-            <h5 class="card-title">Actualización Avanzada</h5>
-            <p class="card-text">Mejora tu equipo al máximo.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./34.jpeg" alt="Producto 1">
-          <div class="card-body">
-            <h5 class="card-title">Producto Destacado</h5>
-            <p class="card-text">El mejor en el mercado.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="./67.jpeg" alt="Producto 2">
-          <div class="card-body">
-            <h5 class="card-title">Accesorio Nuevo</h5>
-            <p class="card-text">Ideal para tu setup.</p>
-          </div>
+      </section>
+
+      {/* --- TRUST BAR --- */}
+      <div className="bg-white py-8 border-b">
+        <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-around gap-8 text-slate-400 font-bold uppercase text-sm tracking-widest">
+          <div className="flex items-center gap-2"><CheckCircle2 className="text-indigo-600" /> Soporte Profesional</div>
+          <div className="flex items-center gap-2"><Clock className="text-indigo-600" /> Respuesta Rápida</div>
+          <div className="flex items-center gap-2"><ShieldCheck className="text-indigo-600" /> Garantía en Servicio</div>
+          <div className="flex items-center gap-2"><CreditCard className="text-indigo-600" /> Pagos Seguros</div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Servicios -->
-  <section id="services" class="services">
-    <div class="container">
-      <h2>Servicios</h2>
-      <div class="row">
-        <div class="col-md-3"><h5>Servicio Remoto</h5><p>Asistencia virtual.</p></div>
-        <div class="col-md-3"><h5>Reparación de PCs</h5><p>Hardware y software.</p></div>
-        <div class="col-md-3"><h5>Actualización de Software</h5><p>Optimización completa.</p></div>
-        <div class="col-md-3"><h5>Recuperación de Datos</h5><p>Recupera lo perdido.</p></div>
-        
-      </div>
-    </div>
-  </section>
+      {/* --- SERVICES --- */}
+      <section id="servicios" className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-black text-slate-900 mb-4 tracking-tight">Servicios de Especialidad</h2>
+          <div className="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full mb-6"></div>
+          <p className="text-slate-600 max-w-2xl mx-auto text-lg font-medium">
+            Soluciones integrales para equipos personales y empresariales.
+          </p>
+        </div>
 
-
- <section class="elementor-section elementor-inner-section elementor-element elementor-element-0a21d23 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0a21d23" data-element_type="section">
-    <div class="elementor-container elementor-column-gap-default">
-        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-4339d28" data-id="4339d28" data-element_type="column">
-            <div class="elementor-widget-wrap elementor-element-populated">
-                <div class="elementor-element elementor-element-8f7a0f8 aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="8f7a0f8" data-element_type="widget" data-widget_type="image.default">
-                    <div class="elementor-widget-container">
-                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/amdryzen.png" class="attachment-large size-large wp-image-2643" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/amdryzen.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/amdryzen-16x4.png 16w" sizes="(max-width: 118px) 100vw, 118px">
-                    </div>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {services.map((service, idx) => (
+            <div key={idx} className="bg-white p-8 rounded-2xl border border-slate-100 hover:border-indigo-200 hover:shadow-2xl transition-all duration-300 group">
+              <div className="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
+              <p className="text-slate-600 leading-relaxed text-sm">
+                {service.description}
+              </p>
             </div>
+          ))}
         </div>
-        
-        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-08cb678" data-id="08cb678" data-element_type="column">
-            <div class="elementor-widget-wrap elementor-element-populated">
-                <div class="elementor-element elementor-element-6e8847d aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="6e8847d" data-element_type="widget" data-widget_type="image.default">
-                    <div class="elementor-widget-container">
-                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/asus.png" class="attachment-large size-large wp-image-2645" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/asus.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/asus-16x4.png 16w" sizes="(max-width: 118px) 100vw, 118px">
-                    </div>
-                </div>
+      </section>
+
+      {/* --- PRODUCTS --- */}
+      <section id="productos" className="py-24 bg-slate-900 text-white px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div>
+              <h2 className="text-4xl font-black mb-4">Tienda Tecnológica</h2>
+              <p className="text-slate-400 text-lg">Productos certificados para llevar tu productividad al siguiente nivel.</p>
             </div>
-        </div>
-        
-        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-c783f34" data-id="c783f34" data-element_type="column">
-            <div class="elementor-widget-wrap elementor-element-populated">
-                <div class="elementor-element elementor-element-24585b1 aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="24585b1" data-element_type="widget" data-widget_type="image.default">
-                    <div class="elementor-widget-container">
-                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/msi.png" class="attachment-large size-large wp-image-2644" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/msi.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/msi-16x4.png 16w" sizes="(max-width: 118px) 100vw, 118px">
-                    </div>
+            <button className="bg-white text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-slate-200 transition-colors">
+              Explorar Todos
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {products.map((prod, idx) => (
+              <div key={idx} className="group bg-slate-800 rounded-3xl overflow-hidden flex flex-col sm:flex-row border border-slate-700 hover:border-indigo-500 transition-colors">
+                <div className="sm:w-1/2 h-64 sm:h-auto bg-slate-700 relative overflow-hidden">
+                  {/* Placeholder imagen producto */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-indigo-900/20">
+                    <ShoppingBag className="w-16 h-16 text-slate-600" />
+                  </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-b9d6a6b" data-id="b9d6a6b" data-element_type="column">
-            <div class="elementor-widget-wrap elementor-element-populated">
-                <div class="elementor-element elementor-element-bc76b24 aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="bc76b24" data-element_type="widget" data-widget_type="image.default">
-                    <div class="elementor-widget-container">
-                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/thermaltake.png" class="attachment-large size-large wp-image-2646" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/thermaltake.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/thermaltake-16x4.png 16w" sizes="(max-width: 118px) 100vw, 118px">
-                    </div>
+                <div className="p-8 sm:w-1/2 flex flex-col">
+                  <span className="text-indigo-400 font-bold text-xs uppercase mb-2 tracking-widest">{prod.category}</span>
+                  <h3 className="text-2xl font-bold mb-4">{prod.name}</h3>
+                  <p className="text-slate-400 mb-8 flex-1">{prod.desc}</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-2xl font-black">{prod.price}</span>
+                    <button className="bg-indigo-600 p-3 rounded-full hover:bg-indigo-500 transition-transform group-hover:scale-110">
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                  </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- NEQUI FLOW --- */}
+      <section id="pago" className="py-24 px-6">
+        <div className="max-w-4xl mx-auto bg-white rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-100 flex flex-col md:flex-row gap-12 items-center">
+          <div className="flex-1">
+            <h2 className="text-3xl font-black text-slate-900 mb-6">¿Deseas comprar o pagar un servicio?</h2>
+            <p className="text-slate-600 mb-8 text-lg leading-relaxed">
+              Realiza tus pagos de forma rápida y segura a través de **Nequi**. Una vez realizado el registro, podrás finalizar tu transacción en segundos.
+            </p>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center gap-4 text-slate-700 font-medium">
+                <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">1</div>
+                Regístrate con tus datos.
+              </div>
+              <div className="flex items-center gap-4 text-slate-700 font-medium">
+                <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">2</div>
+                Realiza el pago en el portal de Nequi.
+              </div>
+              <div className="flex items-center gap-4 text-slate-700 font-medium">
+                <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center font-bold">3</div>
+                Envíanos el comprobante por WhatsApp.
+              </div>
             </div>
-        </div>
-        
-        <div class="aux-parallax-section elementor-column elementor-col-20 elementor-inner-column elementor-element elementor-element-3cb83c7" data-id="3cb83c7" data-element_type="column">
-            <div class="elementor-widget-wrap elementor-element-populated">
-                <div class="elementor-element elementor-element-e55134c aux-appear-watch-animation aux-fade-in-left-2 elementor-widget elementor-widget-image aux-animated aux-animated-once" data-id="e55134c" data-element_type="widget" data-widget_type="image.default">
-                    <div class="elementor-widget-container">
-                        <img loading="lazy" decoding="async" width="118" height="33" src="https://nsacomputadores.com.co/wp-content/uploads/2021/06/nvidia.png" class="attachment-large size-large wp-image-2647" alt="" srcset="https://nsacomputadores.com.co/wp-content/uploads/2021/06/nvidia.png 118w, https://nsacomputadores.com.co/wp-content/uploads/2021/06/nvidia-16x4.png 16w">
-                    </div>
-                </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-all flex-1">
+                Registrar Compra
+              </button>
+              <a 
+                href="https://transacciones.nequi.com/bdigital/login" 
+                target="_blank" 
+                rel="noreferrer"
+                className="bg-[#da0081] text-white px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-all flex items-center justify-center gap-2 flex-1 shadow-lg shadow-pink-200"
+              >
+                Ir a Nequi
+              </a>
             </div>
+          </div>
+          <div className="w-full md:w-64 aspect-square bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 p-6 text-center">
+            <CreditCard className="w-16 h-16 mb-4 opacity-20" />
+            <p className="text-xs font-bold uppercase tracking-widest">Pago 100% Seguro</p>
+          </div>
         </div>
-    </div>
-</section>
+      </section>
 
+      {/* --- FOOTER --- */}
+      <footer id="nosotros" className="bg-slate-900 pt-20 pb-10 px-6 text-slate-400">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+            <div>
+              <div className="flex items-center gap-2 text-white mb-6">
+                <div className="bg-indigo-600 p-1.5 rounded text-white font-bold text-lg">W</div>
+                <span className="font-black text-xl tracking-tight uppercase">Wolves TI</span>
+              </div>
+              <p className="leading-relaxed mb-6">
+                Expertos en reparación de computadores con años de experiencia brindando soluciones de alta tecnología en la región. Confianza y rapidez en cada intervención.
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="p-2 bg-slate-800 rounded-lg hover:bg-indigo-600 hover:text-white transition-all"><Globe className="w-5 h-5" /></a>
+                <a href="https://wa.me/573505416339" className="p-2 bg-slate-800 rounded-lg hover:bg-green-600 hover:text-white transition-all"><MessageCircle className="w-5 h-5" /></a>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-sm tracking-widest">Contacto Directo</h4>
+              <ul className="space-y-4">
+                <li className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-indigo-400">
+                    <MessageCircle className="w-5 h-5" />
+                  </div>
+                  <span>WhatsApp: +57 350 541 6339</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-indigo-400">
+                    <Clock className="w-5 h-5" />
+                  </div>
+                  <span>Lunes - Sábado: 8am - 6pm</span>
+                </li>
+              </ul>
+            </div>
 
-  <!-- Venta de Productos -->
-  <section id="products" class="products">
-    <div class="container">
-      <h2>Venta de Productos</h2>
-      <input type="text" id="searchProduct" class="form-control mb-3" placeholder="Buscar producto...">
-      <div id="productResults"></div>
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">Comprar</button>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="about">
-    <div class="container">
-      <h2>About Us</h2>
-    <center> <p>Somos expertos en reparación de computadores con años de experiencia.</p> </center>  
-      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4810.092170450665!2d-74.15556242424987!3d4.686164241781816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9cea2b7ee513%3A0x3c2d3000634fd8fc!2sCalle%2019%20A%20Bis%20%23116-31%2C%20Bogot%C3%A1%2C%20Colombia!5e1!3m2!1sen!2sid!4v1767567106995!5m2!1sen!2sid" allowfullscreen></iframe>
-      <a href="https://wa.me/573505416339" class="btn btn-success btn-lg ms-2" target="_blank">WhatsApp</a>
-    </div>
-  </section>
- 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2026 Kaleth corcho. Todos los derechos reservados.</p>
-  </footer>
-
-  <!-- Modal de Registro -->
-  <div class="modal fade" id="registerModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Registro para Compra</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div>
+              <h4 className="text-white font-bold mb-6 uppercase text-sm tracking-widest">Enlaces</h4>
+              <ul className="space-y-3">
+                <li><button onClick={() => scrollToSection('home')} className="hover:text-white transition-colors">Inicio</button></li>
+                <li><button onClick={() => scrollToSection('servicios')} className="hover:text-white transition-colors">Servicios Profesionales</button></li>
+                <li><button onClick={() => scrollToSection('productos')} className="hover:text-white transition-colors">Venta de Productos</button></li>
+                <li><button onClick={() => scrollToSection('pago')} className="hover:text-white transition-colors">Pagos Nequi</button></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="pt-8 border-t border-slate-800 text-center text-sm">
+            <p>© {new Date().getFullYear()} <span className="text-white font-bold">Kaleth Corcho</span>. Todos los derechos reservados.</p>
+          </div>
         </div>
-        <div class="modal-body">
-          <form id="registerForm">
-            <input type="text" class="form-control mb-2" placeholder="Nombre" required>
-            <input type="email" class="form-control mb-2" placeholder="Email" required>
-            <button type="submit" class="btn btn-primary">Registrar y Pagar en Nequi</button>
-          </form>
-          <a href="https://transacciones.nequi.com/bdigital/login" class="btn btn-secondary mt-2" target="_blank">Ir a Nequi</a>
-        </div>
-      </div>
+      </footer>
     </div>
-  </div>
- 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Simulación de búsqueda de productos (reemplaza con datos de Excel)
-    const products = [
-      { name: 'RAM 4GB SODIMM', price: '$50000', desc: 'En stock.' },
-      { name: 'Mouse Gamer', price: '$160000', desc: 'Por pedido.' }
-    ];
-    document.getElementById('searchProduct').addEventListener('input', function() {
-      const query = this.value.toLowerCase();
-      const results = products.filter(p => p.name.toLowerCase().includes(query));
-      document.getElementById('productResults').innerHTML = results.map(p => `<div class="card"><div class="card-body"><h5>${p.name}</h5><p>${p.desc}</p><p>${p.price}</p></div></div>`).join('');
-    });
+  );
+};
 
-    // Registro simple con localStorage
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = this[0].value;
-      const email = this[1].value;
-      localStorage.setItem('user', JSON.stringify({ name, email }));
-      alert('Registrado exitosamente. Procede a pagar en Nequi.');
-    });
-  </script>
-</body>
-</html>
-
-
-
-
+export default App;
 
 
